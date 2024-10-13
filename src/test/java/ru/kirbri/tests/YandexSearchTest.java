@@ -13,6 +13,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
+@Disabled("Сaptcha occurrence")
 public class YandexSearchTest extends TestBase {
     @BeforeEach
     void beforeEach() {
