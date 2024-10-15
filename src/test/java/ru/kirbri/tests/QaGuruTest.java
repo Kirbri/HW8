@@ -22,11 +22,11 @@ public class QaGuruTest extends TestBase{
 
     static Stream<Arguments> qaGuruSiteShouldCorrectCourseTest() {
         return Stream.of(
-                Arguments.of("java", "Java"),
-                Arguments.of("python", "Python"),
-                Arguments.of("java_advanced", "Java Advanced 2.0"),
-                Arguments.of("python_advanced", "Python Advanced"),
-                Arguments.of("chatgpt", "ChatGPT")
+                Arguments.of("java", "Курс по автоматизации тестирования на Java"),
+                Arguments.of("python", "Курс по автоматизации тестирования на Python"),
+                Arguments.of("java_advanced", "Продвинутый курс по автоматизации тестирования Java Advanced 2.0"),
+                Arguments.of("python_advanced", "Продвинутый курс по автоматизации тестирования Python Advanced"),
+                Arguments.of("chatgpt", "Курс-интенсив\nАвтоматизация тестов с ChatGPT")
         );
     }
 
@@ -38,17 +38,8 @@ public class QaGuruTest extends TestBase{
     @DisplayName("Проверка курсов на сайте qa.guru")
     @ParameterizedTest
     void qaGuruSiteShouldCorrectCourseTest(String expectedUrl, String expectedText) {
-        String checkText;
-        if (expectedUrl.equals("java") || expectedUrl.equals("python")) {
-            checkText = "Курс по автоматизации тестирования на " + expectedText;
-        } else if (expectedUrl.equals("java_advanced") || expectedUrl.equals("python_advanced")) {
-            checkText = "Продвинутый курс по автоматизации тестирования " + expectedText;
-        } else {
-            checkText = "Курс-интенсив\n" +
-                    "Автоматизация тестов с " + expectedText;
-        }
         $$(".t-menu__link-item.t-menusub__target-link").get(1).hover();
         $("[href=\"https://qa.guru/" + expectedUrl + "\"]").click();
-        $(".t995__inner-wrapper").shouldHave(text(checkText));
+        $(".t995__inner-wrapper").shouldHave(text(expectedText));
     }
 }
